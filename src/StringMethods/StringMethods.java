@@ -32,33 +32,92 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		return null;
+		if (s1.length() > s2.length()) {
+			return s1;
+		}
+		if (s1.length() < s2.length()) {
+			return s2;
+		}
+		return "equal";
 	}
 
-	
-	// if String s contains the word "underscores", change all of the spaces to underscores
+	// if String s contains the word "underscores", change all of the spaces to
+	// underscores
 	public static String formatSpaces(String s) {
-		return null;
+		if (s.contains("underscores")) {
+			return s.replaceAll("\\s", "_");
+		}
+		return s;
 	}
 
-	
-	// Return the name of the person whose LAST name would appear first if they were in alphabetical order
+	// Return the name of the person whose LAST name would appear first if they were
+	// in alphabetical order
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
+		String name1 = "";
+		String name2 = "";
+		String name3 = "";
+			for(int j =0; j<s1.length();j++) {
+				if(s1.substring(j, j+1).equals("\\s") && Character.isLetter(j+1) && s1.substring(j+2, j+3).equals("\\s")) {
+					name1 = s1.substring(j+1,j+2);
+				}
+			}
+				for(int i =0; i<s2.length();i++) {
+					if(s2.substring(i, i+1).equals("\\s") && Character.isLetter(i+1) && s2.substring(i+2, i+3).equals("\\s")) {
+						name2 = s2.substring(i+1,i+2);
+					}
+				}
+					for(int x = 0; x< s3.length();x++) {
+						if(s3.substring(x, x+1).equals("\\s") && Character.isLetter(x+1) && s3.substring(x+2, x+3).equals("\\s")) {
+							name3 = s3.substring(x+1,x+2);
+					}
+					}
+					 if((name2.compareToIgnoreCase(name1)<0)&&(name2.compareToIgnoreCase(name3)<0))
+				        {
+				            return s2;
+				        }
+
+				        //Compare 
+
+				        if((name1.compareToIgnoreCase(name2)<0)&&(name1.compareToIgnoreCase(name3)<0))
+				        {
+				            return s1;
+				        }
+
+				        //Compare
+
+				        if((name3.compareToIgnoreCase(name1)<0)&&(name3.compareToIgnoreCase(name2)<0))
+				        {
+				           return s3;
+				        }
 		return null;
 	}
-	
-	
+
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int sum = 0;
+		for (int i = 0; i < s.length(); i++) {
+			try {
+				int num = Integer.parseInt(s.substring(i, i + 1));
+				sum = sum + num;
+				// is an integer!
+			} catch (NumberFormatException e) {
+				// not an integer!
+			}
+		}
+		return sum;
 	}
-	
-	
+
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int counter = 0;
+		for(int i =0;i<substring.length();i++) {
+			if(s.substring(i, i+substring.length()).equals(substring)) {
+				counter = counter +1;
+			}
+		}
+		return counter;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
@@ -71,13 +130,11 @@ public class StringMethods {
 		return null;
 	}
 
-
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
 		return 0;
 	}
-	
 
 	// Given String s, return the number of characters between the first occurrence
 	// of String substring and the final occurrence
@@ -86,14 +143,13 @@ public class StringMethods {
 		return 0;
 	}
 
-
 	// Return true if String s is a palindrome
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
 		return true;
 	}
-	
+
 }
 
 class Utilities {
