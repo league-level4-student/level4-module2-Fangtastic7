@@ -98,13 +98,10 @@ public class StringMethods {
 	public static int numeralSum(String s) {
 		int sum = 0;
 		for (int i = 0; i < s.length(); i++) {
-			try {
+			if(Character.isDigit(s.charAt(i))){
 				int num = Integer.parseInt(s.substring(i, i + 1));
 				sum = sum + num;
-				// is an integer!
-			} catch (NumberFormatException e) {
-				// not an integer!
-			}
+			} 
 		}
 		return sum;
 	}
@@ -112,9 +109,12 @@ public class StringMethods {
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
 		int counter = 0;
-		for(int i =0;i<substring.length();i++) {
+		for(int i = 0;i<s.length();i++) {
+			if(i<= s.length()-substring.length()) {
 			if(s.substring(i, i+substring.length()).equals(substring)) {
-				counter = counter +1;
+				counter = counter + 1;
+				System.out.println(s);
+			}
 			}
 		}
 		return counter;
@@ -122,18 +122,31 @@ public class StringMethods {
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		
+		String phrase = Utilities.encrypt(s.getBytes(), (byte) key);
+		
+		return phrase;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		String phrase = Utilities.decrypt(s, (byte) key);
+		
+		return phrase;
 	}
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		int counter = 0;
+		for(int i = 0;i <s.length();i++) {
+			if(i <= s.length()-substring.length()) {
+				if(s.substring(i, i+substring.length()).equals(substring)) {
+					counter = counter +1;
+				}
+			}
+		}
+		return counter;
 	}
 
 	// Given String s, return the number of characters between the first occurrence
