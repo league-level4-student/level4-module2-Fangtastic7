@@ -55,42 +55,7 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		String name1 = "";
-		String name2 = "";
-		String name3 = "";
-			for(int j =0; j<s1.length();j++) {
-				if(s1.substring(j, j+1).equals("\\s") && Character.isLetter(j+1) && s1.substring(j+2, j+3).equals("\\s")) {
-					name1 = s1.substring(j+1,j+2);
-				}
-			}
-				for(int i =0; i<s2.length();i++) {
-					if(s2.substring(i, i+1).equals("\\s") && Character.isLetter(i+1) && s2.substring(i+2, i+3).equals("\\s")) {
-						name2 = s2.substring(i+1,i+2);
-					}
-				}
-					for(int x = 0; x< s3.length();x++) {
-						if(s3.substring(x, x+1).equals("\\s") && Character.isLetter(x+1) && s3.substring(x+2, x+3).equals("\\s")) {
-							name3 = s3.substring(x+1,x+2);
-					}
-					}
-					 if((name2.compareToIgnoreCase(name1)<0)&&(name2.compareToIgnoreCase(name3)<0))
-				        {
-				            return s2;
-				        }
-
-				        //Compare 
-
-				        if((name1.compareToIgnoreCase(name2)<0)&&(name1.compareToIgnoreCase(name3)<0))
-				        {
-				            return s1;
-				        }
-
-				        //Compare
-
-				        if((name3.compareToIgnoreCase(name1)<0)&&(name3.compareToIgnoreCase(name2)<0))
-				        {
-				           return s3;
-				        }
+		
 		return null;
 	}
 
@@ -113,7 +78,7 @@ public class StringMethods {
 			if(i<= s.length()-substring.length()) {
 			if(s.substring(i, i+substring.length()).equals(substring)) {
 				counter = counter + 1;
-				System.out.println(s);
+				//System.out.println(s);
 			}
 			}
 		}
@@ -140,9 +105,16 @@ public class StringMethods {
 	public static int wordsEndsWithSubstring(String s, String substring) {
 		int counter = 0;
 		for(int i = 0;i <s.length();i++) {
-			if(i <= s.length()-substring.length()) {
-				if(s.substring(i, i+substring.length()).equals(substring)) {
+			if(i < s.length()-substring.length()+1) {
+				if(i+substring.length()+1 < s.length()) {
+				if(s.substring(i, i+substring.length()).equals(substring) && s.substring(i+substring.length(), i+substring.length()+1).equals(" ")) {
 					counter = counter +1;
+				}
+				}
+				else {
+					if(s.substring(i, i+substring.length()).equals(substring)) {
+						counter = counter + 1;
+					}
 				}
 			}
 		}
@@ -153,14 +125,38 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int x = 0;
+		int y =0;
+		boolean first = false;
+		for(int i = 0; i<s.length(); i++) {
+			if(i<=s.length()-substring.length()) {
+				if(s.substring(i, i+substring.length()).equals(substring)) {
+					if(first) {
+						y=i;
+					}
+					else {
+						first = true; 
+						x = i;
+					}
+				}
+			}
+		}
+		return s.substring(x+substring.length(), y).length();
 	}
 
 	// Return true if String s is a palindrome
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		return true;
+		s = s.replaceAll("[^A-Za-z]+", "");
+		String word = "";
+		for(int i = 0 ; i <s.length(); i++) {
+			word = word + s.charAt(s.length()-1-i);
+		}
+		if(word.equalsIgnoreCase(s)) {
+			return true;
+		}
+		return false;
 	}
 
 }

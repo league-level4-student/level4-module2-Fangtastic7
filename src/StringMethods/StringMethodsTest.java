@@ -63,6 +63,7 @@ class StringMethodsTest {
 		assertEquals(2, StringMethods.wordsEndsWithSubstring("He was visiting The League of Amazing Programmers.", "ing"));
 		assertEquals(7, StringMethods.wordsEndsWithSubstring("Here are multiple words that have the same letter at the end.", "e"));
 		assertEquals(0, StringMethods.wordsEndsWithSubstring("This should give us zero matches", "lemonade"));
+		assertEquals(1, StringMethods.wordsEndsWithSubstring("He is ready", "y"));
 	}
 	
 	@Test
