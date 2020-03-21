@@ -55,8 +55,42 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		
-		return null;
+		String name1 = "";
+		String name2 = "";
+		String name3 = "";
+			for(int j =0; j<s1.length();j++) {
+				if(s1.substring(j, j+1).equals("\\s") && Character.isLetter(j+1) && s1.substring(j+2, j+3).equals("\\s")) {
+					name1 = s1.substring(j+1,j+2);
+				}
+			}
+				for(int i =0; i<s2.length();i++) {
+					if(s2.substring(i, i+1).equals("\\s") && Character.isLetter(i+1) && s2.substring(i+2, i+3).equals("\\s")) {
+						name2 = s2.substring(i+1,i+2);
+					}
+				}
+					for(int x = 0; x< s3.length();x++) {
+						if(s3.substring(x, x+1).equals("\\s") && Character.isLetter(x+1) && s3.substring(x+2, x+3).equals("\\s")) {
+							name3 = s3.substring(x+1,x+2);
+					}
+					}
+					 if((name2.compareToIgnoreCase(name1)<0)&&(name2.compareToIgnoreCase(name3)<0))
+				        {
+				            return s2.trim();
+				        }
+
+				        //Compare 
+
+				        if((name1.compareToIgnoreCase(name2)<0)&&(name1.compareToIgnoreCase(name3)<0))
+				        {
+				            return s1.trim();
+				        }
+
+				        //Compare
+
+				     //   if((name3.compareToIgnoreCase(name1)<0)&&(name3.compareToIgnoreCase(name2)<0))
+				      //  {
+				           return s3.trim();
+				      //  }
 	}
 
 	// Return the sum of all numerical digits in the String
